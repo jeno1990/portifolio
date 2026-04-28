@@ -64,18 +64,27 @@ function HeroText() {
 
         {/* Content (Pushed forward in 3D space) */}
         <div 
-          className="relative z-10 space-y-6 p-10 md:p-16 text-center"
+          className="relative z-10 space-y-6 p-10 md:p-16 flex flex-col items-start text-left"
           style={{ transform: "translateZ(60px)" }}
         >
-          <h2 className="text-primary font-medium tracking-wider uppercase text-sm md:text-base drop-shadow-md">
-            {resumeData.personalInfo.title}
+          <h2 className="text-xl md:text-2xl text-foreground/80 font-medium tracking-wide drop-shadow-md flex items-center gap-3">
+            <span className="w-8 h-[2px] bg-primary rounded-full"></span>
+            Hi, I&apos;m Nigatu
           </h2>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-foreground to-foreground/60 py-2 drop-shadow-2xl">
-            {resumeData.personalInfo.name}
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-foreground via-foreground/80 to-foreground/40 py-2 drop-shadow-2xl leading-[1.1]">
+            {resumeData.personalInfo.title.split('&').map((part, i, arr) => (
+              <span key={i}>
+                {part.trim()}
+                {i < arr.length - 1 && <span className="text-primary block md:inline md:mx-4">&</span>}
+              </span>
+            ))}
           </h1>
-          <p className="text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto font-light leading-relaxed">
-            {resumeData.personalInfo.summary}
-          </p>
+          <div className="relative mt-8">
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/80 to-transparent rounded-full"></div>
+            <p className="text-sm md:text-base text-foreground/60 max-w-2xl font-mono leading-loose pl-6 py-1 tracking-tight">
+              {resumeData.personalInfo.summary}
+            </p>
+          </div>
         </div>
       </motion.div>
     </div>
