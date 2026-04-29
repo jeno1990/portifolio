@@ -7,7 +7,7 @@ import { GraduationCap, Award, HeartHandshake } from "lucide-react";
 
 export function SkillsEducationSection() {
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10">
+    <section className="py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10" id="more">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

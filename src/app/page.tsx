@@ -98,8 +98,8 @@ export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pb-24">
-        <div className="max-w-5xl mx-auto w-full z-10 flex flex-col items-center text-center">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pb-24" id="home">
+        <div className="max-w-5xl mx-auto w-full z-10 flex flex-col items-center text-center mt-20 md:mt-24">
           <HeroText />
 
           <motion.div

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 import { Footer } from "@/components/ui/Footer";
+import { NavBar } from "@/components/ui/NavBar";
 
 export default function RootLayout({
   children,
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col bg-transparent text-foreground overflow-x-hidden selection:bg-primary selection:text-primary-foreground" suppressHydrationWarning>
         <StarryBackground />
         <FancyCursor />
+        <NavBar />
         {children}
         <Footer />
       </body>
