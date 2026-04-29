@@ -67,6 +67,45 @@ export const resumeData = {
       ],
     },
     {
+      id: "proj_skillbridge",
+      slug: "skill-bridge",
+      title: "SkillBridge",
+      subtitle: "AI-Driven Educational Platform",
+      year: "2023",
+      type: "mobile",
+      techStack: "Flutter, Node.js, LLMs, RAG",
+      role: "Spearheaded the mobile application development from inception to launch. Played a pivotal leadership role in designing and implementing AI-driven features, specifically integrating Large Language Models (LLMs) for content embedding and architecting Retrieval-Augmented Generation (RAG) operations in seamless coordination with the core Node.js backend.",
+      duration: "01/2023 – 08/2024",
+      description:
+        "SkillBridge is an innovative, AI-powered educational platform designed to enhance the learning experience for university exams in Ethiopia. The platform leverages advanced machine learning techniques, including Retrieval-Augmented Generation (RAG) and custom-embedded models, to deliver highly personalized and context-aware educational content directly to students through a high-performance Flutter mobile application.",
+      link: "https://skillbridge.academy/en",
+      image: "/projects/skill-bridge-1.png",
+      images: [
+        "/projects/skill-bridge-1.png",
+        "/projects/skill-bridge-2.png"
+      ],
+    },
+    {
+      id: "proj_rateeat",
+      slug: "rate-eat",
+      title: "RateEat",
+      subtitle: "Restaurant Discovery & Review Platform",
+      year: "2023",
+      type: "mobile",
+      techStack: "Flutter, Node.js, Google Maps API",
+      role: "Engineered complex map integrations and geospatial queries to discover nearby places and capture user ratings. Extended the Node.js backend to meticulously track user preferences, implementing data analysis pipelines to power intelligent, personalized restaurant suggestions.",
+      duration: "01/2023 – 08/2024",
+      description:
+        "RateEat is a dynamic restaurant discovery and review platform that empowers users to find, rate, and review dining experiences. The application utilizes robust geospatial mapping features to seamlessly locate nearby eateries and features an intelligent recommendation engine that analyzes user interaction patterns to suggest tailored dining options.",
+      link: "https://rateeat.app/en",
+      image: "/projects/rate-eat-1.jpg",
+      images: [
+        "/projects/rate-eat-1.jpg",
+        "/projects/rate-eat-2.jpg",
+        "/projects/rate-eat-3.jpg"
+      ],
+    },
+    {
       id: "proj1",
       slug: "intelligent-job-search",
       title: "Intelligent Job Search Automation Platform",
