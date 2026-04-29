@@ -1,3 +1,4 @@
+import { ProjectGallery } from "@/components/ui/ProjectGallery";
 import { resumeData } from "@/data/resume";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
@@ -80,19 +81,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </div>
 
       {/* Showcase Image(s) */}
-      <div className="w-full max-w-6xl mx-auto flex flex-col gap-12 relative z-10">
-        {/* @ts-ignore - images property might not exist on all projects yet */}
-        {(project.images && project.images.length > 0 ? project.images : [project.image]).map((imgSrc: string, idx: number) => (
-          <div key={idx} className="w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-background/50">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src={imgSrc} 
-              alt={`${project.title} screenshot ${idx + 1}`} 
-              className="w-full h-full object-cover object-top"
-            />
-          </div>
-        ))}
-      </div>
+      <ProjectGallery 
+        /* @ts-ignore - images property might not exist on all projects yet */
+        images={project.images && project.images.length > 0 ? project.images : [project.image]} 
+        title={project.title} 
+      />
     </main>
   );
 }
