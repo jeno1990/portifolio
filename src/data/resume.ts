@@ -117,7 +117,7 @@ export const resumeData = {
       duration: "07/2022 – 01/2023",
       description:
         "beU Delivery is a highly popular food and service delivery platform operating in Ethiopia. Built with a robust Flutter mobile application and a scalable Node.js backend, the platform provides seamless ordering, real-time tracking, and efficient delivery logistics, proudly serving more than 100 thousand customers.",
-      link: "https://play.google.com/store/apps/details?id=com.xmt.beu.applite",
+      link: "https://beudelivery.com/",
       image: "/projects/beu.png",
       images: [
         "/projects/beu.png"

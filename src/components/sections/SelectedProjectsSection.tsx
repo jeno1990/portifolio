@@ -57,11 +57,11 @@ export function SelectedProjectsSection() {
                         <ExternalLink className={`opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ${isHovered ? 'text-white' : ''}`} size={32} />
                       </h3>
                       
-                      <div className="flex items-center gap-3 mt-4 text-sm text-foreground/40 font-medium">
-                        {project.techStack?.split(', ').slice(0, 3).map((tech, i) => (
+                      <div className="flex flex-wrap items-center gap-3 mt-4 text-sm text-foreground/40 font-medium">
+                        {project.techStack?.split(', ').map((tech, i, arr) => (
                           <div key={tech} className="flex items-center gap-3">
                             <span>{tech}</span>
-                            {i < 2 && <span className="w-1.5 h-1.5 rounded-full bg-foreground/20" />}
+                            {i < arr.length - 1 && <span className="w-1.5 h-1.5 rounded-full bg-foreground/20" />}
                           </div>
                         ))}
                       </div>

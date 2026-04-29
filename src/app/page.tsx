@@ -108,9 +108,9 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="mt-12 flex flex-wrap gap-4 justify-center"
           >
-            <Link
-              href="#experience"
-              className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 font-medium text-primary-foreground duration-300 hover:bg-primary/90"
+            <button
+              onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}
+              className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-full bg-primary px-8 font-medium text-primary-foreground duration-300 hover:bg-primary/90 outline-none"
             >
               <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-100%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(100%)]">
                 <div className="relative h-full w-8 bg-white/20" />
@@ -120,7 +120,7 @@ export default function Home() {
                 Explore Portfolio
                 <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
               </span>
-            </Link>
+            </button>
 
             <div className="flex items-center gap-4 px-4">
               <SocialLink href={`https://${resumeData.personalInfo.github}`} icon={<FaGithub size={20} />} />
