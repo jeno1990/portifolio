@@ -73,7 +73,7 @@ export const resumeData = {
       subtitle: "AI-Driven Educational Platform",
       year: "2023",
       type: "mobile",
-      techStack: "Flutter, Node.js, LLMs, RAG",
+      techStack: "Flutter, Android, iOS, Node.js, LLMs, RAG",
       role: "Spearheaded the mobile application development from inception to launch. Played a pivotal leadership role in designing and implementing AI-driven features, specifically integrating Large Language Models (LLMs) for content embedding and architecting Retrieval-Augmented Generation (RAG) operations in seamless coordination with the core Node.js backend.",
       duration: "01/2023 – 08/2024",
       description:
@@ -92,7 +92,7 @@ export const resumeData = {
       subtitle: "Restaurant Discovery & Review Platform",
       year: "2023",
       type: "mobile",
-      techStack: "Flutter, Node.js, Google Maps API",
+      techStack: "Flutter, Android, iOS, Node.js, Google Maps API",
       role: "Engineered complex map integrations and geospatial queries to discover nearby places and capture user ratings. Extended the Node.js backend to meticulously track user preferences, implementing data analysis pipelines to power intelligent, personalized restaurant suggestions.",
       duration: "01/2023 – 08/2024",
       description:
@@ -103,6 +103,24 @@ export const resumeData = {
         "/projects/rate-eat-1.jpg",
         "/projects/rate-eat-2.jpg",
         "/projects/rate-eat-3.jpg"
+      ],
+    },
+    {
+      id: "proj_beu",
+      slug: "beu-delivery",
+      title: "beU Delivery",
+      subtitle: "Food & Service Delivery Platform",
+      year: "2022",
+      type: "mobile",
+      techStack: "Flutter, Android, iOS, Node.js",
+      role: "Started my career here and stayed to develop and scale the core product. Contributed significantly to both the mobile application and backend systems, driving user growth to over 100K downloads on the Google Play Store.",
+      duration: "07/2022 – 01/2023",
+      description:
+        "beU Delivery is a highly popular food and service delivery platform operating in Ethiopia. Built with a robust Flutter mobile application and a scalable Node.js backend, the platform provides seamless ordering, real-time tracking, and efficient delivery logistics, proudly serving more than 100 thousand customers.",
+      link: "https://play.google.com/store/apps/details?id=com.xmt.beu.applite",
+      image: "/projects/beu.png",
+      images: [
+        "/projects/beu.png"
       ],
     },
     {
@@ -135,21 +153,7 @@ export const resumeData = {
       link: "#", // Dummy link
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop", // Dummy image
     },
-    {
-      id: "proj3",
-      slug: "resume-roaster",
-      title: "Resume Roaster",
-      subtitle: "AI Resume Feedback Platform",
-      year: "2024",
-      type: "web",
-      techStack: "GPT-4, Next.js, PostgreSQL, Prisma, Tailwind CSS",
-      role: "Designed and developed the platform end-to-end using Next.js, PostgreSQL, Prisma, and Tailwind CSS. Integrated OpenAI APIs for real-time resume feedback generation.",
-      duration: "01/2024 – 04/2024",
-      description:
-        "Resume Roaster is a web application designed to provide tailored resume feedback and professional writing services. It integrates GPT-4 for AI-powered recommendations. The platform also includes peer-to-peer reviews with a points-based system, fostering a collaborative and engaging experience.",
-      link: "#", // Dummy link
-      image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop", // Dummy image
-    },
+
   ],
   education: [
     {
