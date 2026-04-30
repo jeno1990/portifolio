@@ -4,7 +4,6 @@ import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } fr
 import { ArrowRight, FileText, Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { SkillsEducationSection } from "@/components/sections/SkillsEducationSection";
 import { resumeData } from "@/data/resume";
 import Link from "next/link";
