@@ -10,8 +10,8 @@ import { resumeData } from "@/data/resume";
 import Link from "next/link";
 
 function HeroText() {
-  const x = useMotionValue(-0.5);
-  const y = useMotionValue(0.5);
+  const x = useMotionValue(0.5);
+  const y = useMotionValue(0);
   
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -40,8 +40,8 @@ function HeroText() {
   };
 
   const handleMouseLeave = () => {
-    x.set(-0.5);
-    y.set(0.5);
+    x.set(0.5);
+    y.set(0);
   };
 
   const background = useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(14, 165, 233, 0.15), transparent 80%)`;

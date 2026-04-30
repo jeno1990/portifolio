@@ -83,7 +83,7 @@ export function SkillsEducationSection() {
                 <h3 className="text-2xl md:text-4xl font-bold text-white">Milestones & Victories</h3>
               </div>
               <p className="text-foreground/70 text-base md:text-lg">
-                Discover my journey through 800+ competitive programming problems, Hackathons, and specialized certifications.
+                Discover my journey through competitive programming problems, Hackathons, and specialized certifications.
               </p>
             </div>
             <div className="relative z-10 flex shrink-0 items-center justify-center w-14 h-14 rounded-full bg-primary/20 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:scale-110">
