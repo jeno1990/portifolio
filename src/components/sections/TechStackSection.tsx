@@ -75,7 +75,19 @@ const techStack = [
 
 export function TechStackSection() {
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-24 max-w-6xl mx-auto relative z-10 w-full" id="skills">
+    <section className="py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10 w-full" id="skills">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="mb-20"
+      >
+        <h2 className="text-[10vw] md:text-7xl font-bold text-white/10 uppercase tracking-tighter -ml-2 mb-8 select-none pointer-events-none">
+          Skills
+        </h2>
+      </motion.div>
+
       <div className="flex flex-col gap-16">
         {techStack.map((group) => (
           <motion.div 
