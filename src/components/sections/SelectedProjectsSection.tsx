@@ -16,14 +16,10 @@ export function SelectedProjectsSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="mb-16 flex items-center gap-4"
+        className="mb-20"
       >
-        {/* Decorative asterisk-like icon from screenshot */}
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-foreground">
-          <path d="M12 2v20M17 5l-10 14M22 12H2M19 19L5 5"/>
-        </svg>
-        <h2 className="text-xl md:text-2xl font-semibold tracking-widest uppercase text-foreground">
-          Selected Projects
+        <h2 className="text-[10vw] md:text-7xl font-bold text-white/10 uppercase tracking-tighter -ml-2 mb-8 select-none pointer-events-none">
+          Projects
         </h2>
       </motion.div>
 
@@ -50,7 +46,7 @@ export function SelectedProjectsSection() {
                       _{String(index + 1).padStart(2, '0')}.
                     </span>
                     <div className="flex flex-col">
-                      <h3 className={`text-4xl md:text-6xl font-black uppercase tracking-tighter transition-colors duration-300 flex items-center gap-4 ${isHovered ? 'text-green-500' : 'text-foreground/20 group-hover:text-foreground/40'}`}>
+                      <h3 className={`text-4xl md:text-6xl font-black uppercase tracking-tighter transition-colors duration-300 flex items-center gap-4 ${isHovered ? 'text-primary drop-shadow-[0_0_10px_rgba(14,165,233,0.5)]' : 'text-foreground/50 group-hover:text-foreground/70'}`}>
                         {project.title.split(' ')[0]} {project.title.split(' ')[1] || ''} 
                         {/* We use just the first two words for the big display based on the screenshot, 
                             or we can use the full title if it's short like 'Electro EV', 'Epikcart', 'Resume Roaster' */}
