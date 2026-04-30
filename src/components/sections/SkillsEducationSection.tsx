@@ -3,7 +3,8 @@
 import { resumeData } from "@/data/resume";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { motion } from "framer-motion";
-import { GraduationCap, Award, HeartHandshake } from "lucide-react";
+import Link from "next/link";
+import { GraduationCap, Award, HeartHandshake, Trophy, ArrowRight } from "lucide-react";
 
 export function SkillsEducationSection() {
   return (
@@ -71,6 +72,25 @@ export function SkillsEducationSection() {
             </div>
           </GlassCard>
         </div>
+
+        {/* Achievements Gateway Card */}
+        <Link href="/achievements" className="block mt-6 group outline-none">
+          <GlassCard className="p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-8 hover:bg-white/5 transition-colors">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mr-32 -mt-32 transition-transform duration-700 group-hover:scale-150" />
+            <div className="relative z-10 max-w-2xl">
+              <div className="flex items-center gap-3 mb-4">
+                <Trophy className="text-primary w-8 h-8" />
+                <h3 className="text-2xl md:text-4xl font-bold text-white">Milestones & Victories</h3>
+              </div>
+              <p className="text-foreground/70 text-base md:text-lg">
+                Discover my journey through 800+ competitive programming problems, Hackathons, and specialized certifications.
+              </p>
+            </div>
+            <div className="relative z-10 flex shrink-0 items-center justify-center w-14 h-14 rounded-full bg-primary/20 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:scale-110">
+              <ArrowRight className="w-6 h-6" />
+            </div>
+          </GlassCard>
+        </Link>
       </motion.div>
     </section>
   );
