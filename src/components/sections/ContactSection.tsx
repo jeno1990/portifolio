@@ -14,17 +14,40 @@ export function ContactSection() {
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [feedbackMessage, setFeedbackMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
+    setFeedbackMessage("");
 
-    // Simulate sending (replace with actual email service like EmailJS, SendGrid, etc.)
-    setTimeout(() => {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const payload = (await response.json()) as { error?: string; message?: string };
+
+      if (!response.ok) {
+        throw new Error(payload.error || "Failed to send message. Please try again.");
+      }
+
       setStatus("success");
+      setFeedbackMessage(payload.message || "Message sent successfully!");
       setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 3000);
-    }, 1500);
+    } catch (error) {
+      setStatus("error");
+      setFeedbackMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    } finally {
+      setTimeout(() => {
+        setStatus("idle");
+        setFeedbackMessage("");
+      }, 3000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -122,6 +145,12 @@ export function ContactSection() {
                 </span>
               </button>
             </div>
+
+            {feedbackMessage && (
+              <p className={`text-sm ${status === "success" ? "text-green-400" : "text-red-400"}`}>
+                {feedbackMessage}
+              </p>
+            )}
           </form>
 
           {/* Divider */}
