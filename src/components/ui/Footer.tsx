@@ -1,7 +1,6 @@
-import { resumeData } from "@/data/resume";
+import { personalInfo } from "@/data";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { Mail } from "lucide-react";
-import Link from "next/link";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -25,7 +24,7 @@ export function Footer() {
         {/* Right Side: Social Links */}
         <div className="flex items-center gap-6 text-foreground/50">
           <a 
-            href={`https://${resumeData.personalInfo.github}`} 
+            href={`https://${personalInfo.github}`} 
             target="_blank" 
             rel="noopener noreferrer"
             className="hover:text-foreground transition-colors"
@@ -33,7 +32,7 @@ export function Footer() {
             <FaGithub size={20} />
           </a>
           <a 
-            href={`https://${resumeData.personalInfo.linkedin}`} 
+            href={`https://${personalInfo.linkedin}`} 
             target="_blank" 
             rel="noopener noreferrer"
             className="hover:text-foreground transition-colors"
@@ -41,7 +40,7 @@ export function Footer() {
             <FaLinkedin size={20} />
           </a>
           <a 
-            href={`mailto:${resumeData.personalInfo.email}`} 
+            href={`mailto:${personalInfo.email}`} 
             className="hover:text-foreground transition-colors"
           >
             <Mail size={20} />

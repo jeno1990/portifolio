@@ -1,21 +1,17 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import FancyCursor from "@/components/ui/FancyCursor";
 import { StarryBackground } from "@/components/ui/StarryBackground";
+import { Footer } from "@/components/ui/Footer";
+import { NavBar } from "@/components/ui/NavBar";
+import { defaultMetadata } from "@/config/metadata";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "Showcasing my work and experience",
-};
-
-import { Footer } from "@/components/ui/Footer";
-import { NavBar } from "@/components/ui/NavBar";
+export const metadata = defaultMetadata;
 
 export default function RootLayout({
   children,

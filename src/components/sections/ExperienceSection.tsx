@@ -2,27 +2,18 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { resumeData } from "@/data/resume";
+import { experience } from "@/data";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export function ExperienceSection() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
     <section className="py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10 w-full" id="experience">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-        className="mb-20"
-      >
-        <h2 className="text-[10vw] md:text-7xl font-bold text-white/10 uppercase tracking-tighter -ml-2 mb-8 select-none pointer-events-none">
-          Experience
-        </h2>
-      </motion.div>
+      <SectionHeader title="Experience" />
 
       <div className="flex flex-col gap-2 relative">
-        {resumeData.experience.map((exp, index) => {
+        {experience.map((exp, index) => {
           const isHovered = hoveredId === exp.id;
           const isFaded = hoveredId !== null && hoveredId !== exp.id;
 
@@ -31,7 +22,7 @@ export function ExperienceSection() {
               key={exp.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-50px" }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onMouseEnter={() => setHoveredId(exp.id)}
               onMouseLeave={() => setHoveredId(null)}
@@ -62,7 +53,6 @@ export function ExperienceSection() {
               </div>
 
               {/* Tags (Right side) - Hidden by default, smooth slide-in on hover */}
-              {/* @ts-ignore */}
               {exp.relatedProjects && exp.relatedProjects.length > 0 && (
                 <div 
                   className={`flex items-center gap-3 mt-4 lg:mt-0 shrink-0 transition-all duration-500 ease-out
@@ -70,7 +60,6 @@ export function ExperienceSection() {
                   `}
                 >
                   <div className="flex flex-wrap items-center gap-2">
-                    {/* @ts-ignore */}
                     {exp.relatedProjects.map((project, i) => (
                       <span 
                         key={i} 
