@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import Image from "next/image";
 
 interface ProjectGalleryProps {
   images: string[];
@@ -76,22 +77,27 @@ function GalleryCard({ imgSrc, idx, title, total }: { imgSrc: string; idx: numbe
         </div>
 
         {/* Blurred background image layer to fill empty spaces nicely */}
-        <div 
-          className="absolute inset-0 opacity-30 z-0 pointer-events-none blur-3xl scale-110"
-          style={{
-            backgroundImage: `url(${imgSrc})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
+        <div className="absolute inset-0 z-0 pointer-events-none blur-3xl scale-110 opacity-30">
+          <Image 
+            src={imgSrc} 
+            alt="" 
+            fill 
+            className="object-cover"
+            aria-hidden="true"
+          />
+        </div>
 
         {/* Main Image containing its aspect ratio */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img 
-          src={imgSrc} 
-          alt={`${title} screenshot ${idx + 1}`} 
-          className="w-full h-full object-contain relative z-10 drop-shadow-2xl p-2 md:p-8 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-        />
+        <div className="relative z-10 w-full h-full p-2 md:p-8 transition-transform duration-700 ease-out group-hover:scale-[1.02] drop-shadow-2xl">
+          <Image 
+            src={imgSrc} 
+            alt={`${title} screenshot ${idx + 1}`} 
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+            priority={idx === 0}
+          />
+        </div>
       </motion.div>
     </div>
   );

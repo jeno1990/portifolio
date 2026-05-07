@@ -1,9 +1,11 @@
 import { ProjectGallery } from "@/components/ui/ProjectGallery";
-import { resumeData } from "@/data/resume";
+import { projects } from "@/data";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { notFound } from "next/navigation";
 import { StarryBackground } from "@/components/ui/StarryBackground";
+import { generateProjectMetadata } from "@/config/metadata";
+import { Metadata } from "next";
 
 interface ProjectPageProps {
   params: {
@@ -13,14 +15,32 @@ interface ProjectPageProps {
 
 // Generate static params for all projects
 export function generateStaticParams() {
-  return resumeData.projects.map((project) => ({
+  return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
+// Generate metadata for each project
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
+
+  if (!project) {
+    return {
+      title: "Project Not Found",
+    };
+  }
+
+  return generateProjectMetadata({
+    title: project.title,
+    description: project.description,
+    slug: project.slug,
+  });
+}
+
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const project = resumeData.projects.find((p) => p.slug === slug);
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();
@@ -82,7 +102,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
       {/* Showcase Image(s) */}
       <ProjectGallery 
-        /* @ts-ignore - images property might not exist on all projects yet */
         images={project.images && project.images.length > 0 ? project.images : [project.image]} 
         title={project.title} 
       />

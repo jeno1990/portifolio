@@ -17,7 +17,8 @@ export function StarryBackground() {
 
   useEffect(() => {
     // Generate random stars only on the client to avoid hydration mismatch
-    const generatedStars: Star[] = Array.from({ length: 150 }).map((_, i) => ({
+    // Reduced from 150 to 50 for better performance
+    const generatedStars: Star[] = Array.from({ length: 50 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100, // Random X position percentage
       y: Math.random() * 100, // Random Y position percentage
@@ -38,7 +39,7 @@ export function StarryBackground() {
       {stars.map((star) => (
         <motion.div
           key={star.id}
-          className="absolute rounded-full bg-white"
+          className="absolute rounded-full bg-white will-change-transform"
           style={{
             left: `${star.x}%`,
             top: `${star.y}%`,

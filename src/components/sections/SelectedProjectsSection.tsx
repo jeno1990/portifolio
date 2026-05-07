@@ -2,31 +2,23 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { resumeData } from "@/data/resume";
+import { projects } from "@/data";
 import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export function SelectedProjectsSection() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   return (
     <section className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10 w-full" id="projects">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-        className="mb-20"
-      >
-        <h2 className="text-[10vw] md:text-7xl font-bold text-white/10 uppercase tracking-tighter -ml-2 mb-8 select-none pointer-events-none">
-          Projects
-        </h2>
-      </motion.div>
+      <SectionHeader title="Projects" />
 
       <div className="flex flex-col relative w-full">
         {/* Left Side: Project List */}
         <div className="w-full lg:w-1/2 flex flex-col">
-          {resumeData.projects.map((project, index) => {
+          {projects.map((project, index) => {
             const isHovered = hoveredProject === project.id;
             
             return (
@@ -80,16 +72,17 @@ export function SelectedProjectsSection() {
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   exit={{ opacity: 0, scale: 0.95, x: 20 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="absolute inset-0 w-full h-full"
+                  className="absolute inset-0 w-full h-full rounded-xl overflow-hidden"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={resumeData.projects.find(p => p.id === hoveredProject)?.image || ''}
+                  <Image
+                    src={projects.find(p => p.id === hoveredProject)?.image || ''}
                     alt="Project Preview"
-                    className="w-full h-full object-cover object-top rounded-xl shadow-2xl border border-white/10"
+                    fill
+                    className="object-cover object-top shadow-2xl"
+                    sizes="(max-width: 1024px) 0vw, 40vw"
                   />
                   {/* Overlay gradient to blend it slightly with the dark background */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent rounded-xl" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent rounded-xl border border-white/10" />
                 </motion.div>
               )}
             </AnimatePresence>
