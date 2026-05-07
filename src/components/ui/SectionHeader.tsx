@@ -14,9 +14,9 @@ export function SectionHeader({ title, className = "" }: SectionHeaderProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
-      className={`mb-20 ${className}`}
+      className={`mb-12 ${className}`}
     >
-      <h2 className="text-[10vw] md:text-7xl font-bold text-white/10 uppercase tracking-tighter -ml-2 mb-8 select-none pointer-events-none">
+      <h2 className="text-3xl md:text-4xl font-bold text-foreground/60 tracking-tight">
         {title}
       </h2>
     </motion.div>

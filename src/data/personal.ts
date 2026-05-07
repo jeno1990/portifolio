@@ -4,7 +4,7 @@ export const personalInfo: PersonalInfo = {
   name: "Nigatu Paulos Tisyano",
   email: "nigatujeno@gmail.com",
   phone: "+1-807-357-6180",
-  linkedin: "linkedin.com/in/jeno",
+  linkedin: "linkedin.com/in/jeno14",
   github: "github.com/jeno1990",
   title: "Full Stack & ML Developer",
   summary:
