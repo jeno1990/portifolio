@@ -7,17 +7,17 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  
+
   --font-sans: var(--font-inter);
 }
 
 :root {
   --background: #050505;
   --foreground: #f0f0f0;
-  
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  
+
+  --primary: #abf04a;
+  --primary-foreground: #000000;
+
   --accent: #1e1e1e;
   --accent-foreground: #f0f0f0;
 }
