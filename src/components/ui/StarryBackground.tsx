@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 interface Star {
@@ -31,6 +32,21 @@ const stars: Star[] = Array.from({ length: 90 }).map((_, i) => {
 });
 
 export function StarryBackground() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-[#03050a]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(28,34,52,0.45),_rgba(3,5,10,0.92)_45%,_#03050a_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_transparent_35%,_rgba(0,0,0,0.45)_100%)]" />
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-[#03050a]">
       {/* Sky gradient + subtle vignette */}
