@@ -9,13 +9,12 @@ export function ExperienceSection() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10 w-full" id="experience">
+    <section className="py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10 w-full" id="experience">
       <SectionHeader title="Experience" />
 
-      <div className="flex flex-col gap-2 relative">
+      <div className="flex flex-col gap-10">
         {experience.map((exp, index) => {
           const isHovered = hoveredId === exp.id;
-          const isFaded = hoveredId !== null && hoveredId !== exp.id;
 
           return (
             <motion.div
@@ -23,54 +22,47 @@ export function ExperienceSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
               onMouseEnter={() => setHoveredId(exp.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className="group relative cursor-default py-6 px-4 md:px-8 -mx-4 md:-mx-8 rounded-2xl transition-all duration-500 ease-out flex flex-col lg:flex-row lg:items-center justify-between hover:bg-white/[0.02]"
-              style={{
-                opacity: isFaded ? 0.3 : 1,
-                transform: isHovered ? "translateX(16px)" : "translateX(0)",
-              }}
+              className="space-y-3 group"
             >
-              <div className="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-12 w-full">
-                
-                {/* Date */}
-                <div className="text-foreground/40 font-mono text-xs md:text-sm shrink-0 w-32 tracking-wider">
-                  {exp.duration}
-                </div>
-
-                {/* Role & Company */}
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span className={`text-2xl md:text-4xl font-light tracking-tight transition-colors duration-500 ${isHovered ? 'text-primary drop-shadow-[0_0_15px_rgba(14,165,233,0.4)]' : 'text-foreground'}`}>
-                    {exp.role}
-                  </span>
-                  <span className="text-white/20 font-light text-xl">@</span>
-                  <span className={`text-xl md:text-3xl font-medium tracking-tight transition-colors duration-500 ${isHovered ? 'text-white' : 'text-foreground/50'}`}>
-                    {exp.company}
-                  </span>
-                </div>
-
+              {/* Company + Duration */}
+              <div className="flex items-center gap-3 text-xs md:text-sm uppercase tracking-wider text-foreground/40 font-semibold">
+                <span>{exp.company}</span>
+                <span className="text-foreground/20">•</span>
+                <span className="font-mono normal-case">{exp.duration}</span>
               </div>
 
-              {/* Tags (Right side) - Hidden by default, smooth slide-in on hover */}
-              {exp.relatedProjects && exp.relatedProjects.length > 0 && (
-                <div 
-                  className={`flex items-center gap-3 mt-4 lg:mt-0 shrink-0 transition-all duration-500 ease-out
-                    ${isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none lg:absolute lg:right-8'}
-                  `}
-                >
-                  <div className="flex flex-wrap items-center gap-2">
-                    {exp.relatedProjects.map((project, i) => (
-                      <span 
-                        key={i} 
-                        className="px-3 py-1.5 text-xs font-semibold tracking-wide text-primary/80 bg-primary/10 rounded-full border border-primary/20 backdrop-blur-md"
-                      >
-                        {project}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
+              {/* Role */}
+              <h3 className="text-xl md:text-2xl font-medium text-foreground/70 group-hover:text-foreground transition-colors duration-300">
+                {exp.role}
+              </h3>
+
+              {/* Location + Projects */}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <span className="text-sm text-foreground/50">{exp.location}</span>
+                
+                {exp.relatedProjects && exp.relatedProjects.length > 0 && (
+                  <>
+                    <span className="text-foreground/20">•</span>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.relatedProjects.map((project, i) => (
+                        <span
+                          key={i}
+                          className={`text-xs px-2 py-1 rounded transition-all duration-300 ${
+                            isHovered
+                              ? 'bg-primary/10 text-primary border border-primary/20'
+                              : 'bg-foreground/5 text-foreground/40 border border-transparent'
+                          }`}
+                        >
+                          {project}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
             </motion.div>
           );
         })}

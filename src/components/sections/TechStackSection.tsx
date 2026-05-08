@@ -6,58 +6,43 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export function TechStackSection() {
   return (
-    <section className="py-32 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10 w-full" id="skills">
+    <section
+      className="py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10 w-full"
+      id="skills"
+    >
       <SectionHeader title="Skills" />
 
-      <div className="flex flex-col gap-16">
-        {techStackWithIcons.map((group) => (
-          <motion.div 
+      <div className="flex flex-col gap-10">
+        {techStackWithIcons.map((group, index) => (
+          <motion.div
             key={group.category}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, margin: "-50px" }}
-            variants={{
-              hidden: { opacity: 0, y: 40 },
-              visible: { 
-                opacity: 1, 
-                y: 0, 
-                transition: { 
-                  duration: 0.6, 
-                  ease: "easeOut",
-                  staggerChildren: 0.1,
-                  delayChildren: 0.2
-                } 
-              }
-            }}
-            className="flex flex-col md:flex-row md:items-start gap-6 md:gap-16 lg:gap-24"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ margin: "-50px" }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            className="space-y-3"
           >
-            {/* Category Title */}
-            <div className="w-full md:w-64 lg:w-72 flex-shrink-0">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground/80 tracking-tight">
-                {group.category}
-              </h2>
-            </div>
-            
-            {/* Skills Grid/Flex */}
-            <div className="flex flex-wrap gap-x-8 gap-y-6 pt-2 md:pt-4">
+            {/* Category Label */}
+            <h3 className="text-xs md:text-sm uppercase tracking-wider text-foreground/40 font-semibold">
+              {group.category}
+            </h3>
+
+            {/* Skills Row */}
+            <div className="flex flex-wrap gap-x-6 gap-y-4">
               {group.skills.map((skill) => (
-                <motion.div 
-                  key={skill.name} 
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
-                  }}
-                  className="flex items-center gap-3 group cursor-default"
+                <div
+                  key={skill.name}
+                  className="inline-flex items-center gap-2 group"
                 >
-                  <skill.icon 
-                    size={24} 
-                    className="text-foreground/60 transition-colors duration-300"
+                  <skill.icon
+                    size={18}
+                    className="text-foreground/50 group-hover:text-foreground transition-colors duration-300"
                     style={{ color: skill.color }}
                   />
-                  <span className="text-lg font-medium text-foreground/80 group-hover:text-foreground transition-colors duration-300">
+                  <span className="text-sm md:text-base text-foreground/70 group-hover:text-foreground transition-colors duration-300">
                     {skill.name}
                   </span>
-                </motion.div>
+                </div>
               ))}
             </div>
           </motion.div>

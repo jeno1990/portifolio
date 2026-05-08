@@ -5,11 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/data";
 import Link from "next/link";
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ChevronDown } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export function SelectedProjectsSection() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedProjects = showAll ? projects : projects.slice(0, 3);
 
   return (
     <section className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10 w-full" id="projects">
@@ -18,7 +21,7 @@ export function SelectedProjectsSection() {
       <div className="flex flex-col relative w-full">
         {/* Left Side: Project List */}
         <div className="w-full lg:w-1/2 flex flex-col">
-          {projects.map((project, index) => {
+          {displayedProjects.map((project, index) => {
             const isHovered = hoveredProject === project.id;
             
             return (
@@ -26,7 +29,7 @@ export function SelectedProjectsSection() {
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-50px" }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
@@ -40,8 +43,6 @@ export function SelectedProjectsSection() {
                     <div className="flex flex-col">
                       <h3 className={`text-4xl md:text-6xl font-black uppercase tracking-tighter transition-colors duration-300 flex items-center gap-4 ${isHovered ? 'text-primary drop-shadow-[0_0_10px_rgba(14,165,233,0.5)]' : 'text-foreground/50 group-hover:text-foreground/70'}`}>
                         {project.title.split(' ')[0]} {project.title.split(' ')[1] || ''} 
-                        {/* We use just the first two words for the big display based on the screenshot, 
-                            or we can use the full title if it's short like 'Electro EV', 'Epikcart', 'Resume Roaster' */}
                         <ExternalLink className={`opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ${isHovered ? 'text-white' : ''}`} size={32} />
                       </h3>
                       
@@ -59,6 +60,28 @@ export function SelectedProjectsSection() {
               </motion.div>
             );
           })}
+
+          {/* See More / Show Less Button */}
+          {projects.length > 3 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="flex justify-center pt-8"
+            >
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="group flex items-center gap-2 px-6 py-3 text-sm font-medium text-foreground/60 hover:text-primary border border-white/10 hover:border-primary/30 rounded-full transition-all duration-300"
+              >
+                <span>{showAll ? "Show Less" : `See More Projects (${projects.length - 3})`}</span>
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
+                />
+              </button>
+            </motion.div>
+          )}
         </div>
 
         {/* Right Side: Image Preview (Only visible on large screens) */}
