@@ -2,17 +2,26 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Lora } from "next/font/google";
 import { projects } from "@/data";
 import Link from "next/link";
 import Image from "next/image";
 import { ExternalLink, ChevronDown } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
+const teaserFont = Lora({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
 export function SelectedProjectsSection() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);
 
   const displayedProjects = showAll ? projects : projects.slice(0, 3);
+  const previewProject = hoveredProject
+    ? projects.find((p) => p.id === hoveredProject)
+    : null;
 
   return (
     <section className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto relative z-10 w-full" id="projects">
@@ -54,6 +63,12 @@ export function SelectedProjectsSection() {
                           </div>
                         ))}
                       </div>
+
+                      <p
+                        className={`lg:hidden mt-4 text-[0.9375rem] leading-snug text-foreground/65 line-clamp-2 transition-colors duration-300 ${teaserFont.className} ${isHovered ? "text-foreground/85" : ""}`}
+                      >
+                        {project.subtitle}
+                      </p>
                     </div>
                   </div>
                 </Link>
@@ -84,28 +99,51 @@ export function SelectedProjectsSection() {
           )}
         </div>
 
-        {/* Right Side: Image Preview (Only visible on large screens) */}
+        {/* Right Side: Image preview + teaser (large screens) */}
         <div className="hidden lg:block absolute right-0 top-0 w-5/12 h-full pointer-events-none">
-          <div className="sticky top-32 w-full aspect-[4/3] rounded-lg overflow-hidden">
-            <AnimatePresence>
-              {hoveredProject && (
+          <div className="sticky top-32 w-full flex flex-col gap-4">
+            <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden border border-white/10 bg-white/[0.02]">
+              <AnimatePresence mode="wait">
+                {previewProject && (
+                  <motion.div
+                    key={previewProject.id}
+                    initial={{ opacity: 0, scale: 0.97, x: 16 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.97, x: -12 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={previewProject.image}
+                      alt={previewProject.title}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 0vw, 40vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <AnimatePresence mode="wait">
+              {previewProject && (
                 <motion.div
-                  key={hoveredProject}
-                  initial={{ opacity: 0, scale: 0.95, x: 20 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, x: 20 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="absolute inset-0 w-full h-full rounded-xl overflow-hidden"
+                  key={`${previewProject.id}-caption`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="rounded-2xl border border-white/[0.07] bg-background/40 px-5 py-4 backdrop-blur-md"
                 >
-                  <Image
-                    src={projects.find(p => p.id === hoveredProject)?.image || ''}
-                    alt="Project Preview"
-                    fill
-                    className="object-cover object-top shadow-2xl"
-                    sizes="(max-width: 1024px) 0vw, 40vw"
-                  />
-                  {/* Overlay gradient to blend it slightly with the dark background */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent rounded-xl border border-white/10" />
+                  <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-primary/90 mb-2">
+                    About
+                  </p>
+                  <p
+                    className={`text-[0.95rem] sm:text-base leading-snug text-foreground/80 line-clamp-2 ${teaserFont.className}`}
+                  >
+                    {previewProject.subtitle}
+                  </p>
                 </motion.div>
               )}
             </AnimatePresence>
